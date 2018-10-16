@@ -1,6 +1,6 @@
 import pygame as pg
 from settings import *
-from menu import *
+from menu import Menu
 from colorpalette import *
 
 class Game:
@@ -17,21 +17,19 @@ class Game:
 
     def loadAssets(self):
         self.all_sprites = pg.sprite.LayeredUpdates()
-        self.MenuBoard = MenuBoard(self)
-        self.MenuCursor = MenuCursor(self)
-        self.MenuItems = MenuItems(self)
-        self.MenuItems.items = ['item1','item2','item3','VeryNiceMenu!']
+        self.Menu = Menu(self)
+        self.Menu.Items.items = ['item1','item2','item3','VeryNiceMenu!']
 
     def events(self):
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 self.running = False
             if event.type == pg.KEYDOWN and event.key == pg.K_DOWN:
-                self.MenuCursor.down()
+                self.Menu.Cursor.down()
             if event.type == pg.KEYDOWN and event.key == pg.K_UP:
-                self.MenuCursor.up()
+                self.Menu.Cursor.up()
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
-                self.MenuCursor.select()
+                self.Menu.Cursor.select()
 
     def update(self):
         self.all_sprites.update()
@@ -39,7 +37,7 @@ class Game:
     def draw(self):
         self.screen.fill(self.rgb.black)
         self.all_sprites.draw(self.screen)
-        self.MenuItems.draw()
+        self.Menu.Items.draw()
 
     def run(self):
         while self.running:

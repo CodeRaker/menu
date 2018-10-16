@@ -1,4 +1,4 @@
 #Resolution
-Width = 800
-Height = 800
-frameRate = 60
+Width = 320
+Height = 240
+frameRate = 30
